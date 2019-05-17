@@ -64,8 +64,8 @@ Verbose output complete: mode = 5
 * 约束的名字在最后面
 
 ## 分页查询
-* 跟MYSQL 一样select * from user limit 10, 10 可以工作
-* 跟Informix一样 select skip 2 first 2 * from user 也可以工作
+* 跟MYSQL 一样select * from user limit 10, 10 可以工作，但是该种模式下，位置不能通过PreparedStatement参数来设置
+* 跟Informix一样 select skip 2 first 2 * from user 也可以工作，改模式可以通过PreparedStatement参数来设置
 * Oracle那种模式也能工作，还没有测试过
 
 ## 命令行工具 dbaccess
@@ -84,4 +84,10 @@ export GL_DATE=%Y-%m-%d
 * 驱动类名称 com.gbasedbt.jdbc.IfxDriver
 * 用户名，安装该软件的用户名
 * 密码，安装该软件的密码
+
+## 解决问题
+
+* 这样不能工作 select date(update_time) ,count(*) as count from expense_type_data group by date(update_time) ; 
+* 这样可以工作 select date(update_time) as date_key, count(*) as count from expense_type_data group by date_key ; 
+
 
