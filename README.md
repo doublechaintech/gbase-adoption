@@ -80,4 +80,8 @@ export GL_DATE=%Y-%m-%d
 
 ## 连接JAVA
 
-jdbc:gbasedbt-sqli://47.99.97.125:9088/gbasedb:gbasedbtserver=gbaseserver;db_locale=zh_cn.utf8;client_locale=zh_cn.utf8;NEWCODESET=utf-8,utf8,57372;
+* 连接字符串jdbc:gbasedbt-sqli://47.99.97.125:9088/gbasedb:gbasedbtserver=gbaseserver;db_locale=zh_cn.utf8;client_locale=zh_cn.utf8;NEWCODESET=utf-8,utf8,57372;
+* 驱动类名称 com.gbasedbt.jdbc.IfxDriver
+* 用户名，安装该软件的用户名
+* 密码，安装该软件的密码
+
