@@ -4,7 +4,7 @@
 
 ## GBASE 类型
 
-* text 不支持用sql插入
+* text 不支持用sql插入, 内容不多可以用varchar(320000)代替
 * bool就是boolean，值是 'T'=true, 'F'= false
 
 ## 切换数据库
