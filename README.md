@@ -1,5 +1,7 @@
-# gbase-adoption
-南大通用GBASE移植过程中的注意事项和文档， 2014年IBM授权南大通用使用Informix源代码，所以很多方面跟Informix相似
+# 南大通用GBASE 8S实施经验
+
+南大通用GBASE移植过程中的注意事项和文档， 2014年IBM授权南大通用使用Informix源代码，所以很多方面跟Informix相似。
+
 ## GBASE 类型
 
 * text 不支持用sql插入
