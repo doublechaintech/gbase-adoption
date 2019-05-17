@@ -22,3 +22,9 @@
 
 * 导入文件 dbaccess - import.sql
 
+## 设置日期格式
+
+在文件profile.gbaseserver中设置
+
+export GL_DATE=%Y-%m-%d
+
