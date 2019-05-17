@@ -1,6 +1,7 @@
-# 南大通用GBASE 8S实施经验
+# 南大通用GBASE 8.5S 实施经验
 
 南大通用GBASE移植过程中的注意事项和文档， 2014年IBM授权南大通用使用Informix源代码，所以很多方面跟Informix相似。
+以下内容只是应用于GBASE8.5S, 其他版本不适用。
 
 ## GBASE 类型
 
