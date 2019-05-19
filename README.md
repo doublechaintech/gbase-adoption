@@ -97,7 +97,7 @@ dbs_collate  zh_CN.57372
 
 ```
 
-## 解决问题
+## 解决Grouby子句包含函数问题
 
 * 这样不能工作 select date(update_time) ,count(*) as count from expense_type_data group by date(update_time) ; 
 * 这样可以工作 select date(update_time) as date_key, count(*) as count from expense_type_data group by date_key ; 
