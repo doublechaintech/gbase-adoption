@@ -58,9 +58,9 @@ export CLIENT_LOCALE=zh_cn.utf8
 export DB_LOCALE=zh_cn.utf8
 export SERVER_LOCALE=zh_cn.utf8
 
-然后重新导入
+执行source ../profile.gbaseserver后，重新导入
 ```
-然后通过 select * from sysmaster:sysdbslocale; 出现类似下面结果相应的数据库zh_CN.57372则认为正确
+通过 执行查询，如果出现类似下面结果相应的数据库dbs_collate=zh_CN.57372则认为正确
 
 ```
 > database his;
