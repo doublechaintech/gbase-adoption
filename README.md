@@ -6,6 +6,105 @@
 ## 启动和停止
 
 onmode -ky && oninit -v
+
+
+
+## GBASE 类型
+
+* text 不支持用sql插入, 内容不多可以用varchar(320000)代替
+* bool就是boolean，值是 'T'=true, 'F'= false
+
+## 切换数据库
+* 跟informix一样，用database <dbname> 来切换
+  
+## GBASE 约束
+* 约束的名字在最后面
+
+## 分页查询
+* 跟MYSQL 一样select * from user limit 10, 10 可以工作，但是该种模式下，位置不能通过PreparedStatement参数来设置
+* 跟Informix一样 select skip 2 first 2 * from user 也可以工作，改模式可以通过PreparedStatement参数来设置
+* Oracle那种模式也能工作，还没有测试过
+
+## 命令行工具 dbaccess
+
+* 导入文件 dbaccess - import.sql
+
+## 设置日期格式
+
+在文件profile.gbaseserver中设置
+
+export GL_DATE=%Y-%m-%d
+
+
+
+## JDBC连接和解决中文问题
+
+* 连接字符串jdbc:gbasedbt-sqli://47.99.97.125:9088/gbasedb:gbasedbtserver=gbaseserver;db_locale=zh_cn.utf8;client_locale=zh_cn.utf8;NEWCODESET=utf-8,utf8,57372;
+* 驱动类名称 com.gbasedbt.jdbc.IfxDriver
+* 用户名，安装该软件的用户名
+* 密码，安装该软件的密码
+
+## JDBC解决中文问题(JDBC抛出SQLEXCEPTION，提示出现Locale mismatch）
+```
+先以原来身份进入
+
+ unset DB_LOCALE CLIENT_LOCALE
+
+
+
+解决方案，要在../profile.gbaseserver  设置
+
+export CLIENT_LOCALE=zh_cn.utf8
+export DB_LOCALE=zh_cn.utf8
+export SERVER_LOCALE=zh_cn.utf8
+
+然后重新导入
+```
+然后通过 select * from sysmaster:sysdbslocale; 出现类似下面结果相应的数据库zh_CN.57372则认为正确
+
+```
+> database his;
+
+Database selected.
+
+> select * from sysmaster:sysdbslocale;
+
+
+
+dbs_dbsname  sysmaster
+dbs_collate  en_US.819
+
+dbs_dbsname  sysutils
+dbs_collate  en_US.819
+
+dbs_dbsname  sysuser
+dbs_collate  en_US.819
+
+dbs_dbsname  sysadmin
+dbs_collate  en_US.819
+
+dbs_dbsname  residentialquarter
+dbs_collate  zh_CN.57372
+
+dbs_dbsname  retailscm
+dbs_collate  zh_CN.57372
+
+dbs_dbsname  his
+dbs_collate  zh_CN.57372
+
+7 row(s) retrieved.
+
+
+```
+
+## 解决问题
+
+* 这样不能工作 select date(update_time) ,count(*) as count from expense_type_data group by date(update_time) ; 
+* 这样可以工作 select date(update_time) as date_key, count(*) as count from expense_type_data group by date_key ; 
+
+
+## 启动和停止日志
+
 ```
 Your evaluation license will expire on 2020-05-07 00:00:00
 shared memory not initialized for GBASEDBTSERVER 'gbaseserver'
@@ -50,44 +149,5 @@ Verbose output complete: mode = 5
 
 
 ```
-
-
-## GBASE 类型
-
-* text 不支持用sql插入, 内容不多可以用varchar(320000)代替
-* bool就是boolean，值是 'T'=true, 'F'= false
-
-## 切换数据库
-* 跟informix一样，用database <dbname> 来切换
-  
-## GBASE 约束
-* 约束的名字在最后面
-
-## 分页查询
-* 跟MYSQL 一样select * from user limit 10, 10 可以工作，但是该种模式下，位置不能通过PreparedStatement参数来设置
-* 跟Informix一样 select skip 2 first 2 * from user 也可以工作，改模式可以通过PreparedStatement参数来设置
-* Oracle那种模式也能工作，还没有测试过
-
-## 命令行工具 dbaccess
-
-* 导入文件 dbaccess - import.sql
-
-## 设置日期格式
-
-在文件profile.gbaseserver中设置
-
-export GL_DATE=%Y-%m-%d
-
-## 连接JAVA
-
-* 连接字符串jdbc:gbasedbt-sqli://47.99.97.125:9088/gbasedb:gbasedbtserver=gbaseserver;db_locale=zh_cn.utf8;client_locale=zh_cn.utf8;NEWCODESET=utf-8,utf8,57372;
-* 驱动类名称 com.gbasedbt.jdbc.IfxDriver
-* 用户名，安装该软件的用户名
-* 密码，安装该软件的密码
-
-## 解决问题
-
-* 这样不能工作 select date(update_time) ,count(*) as count from expense_type_data group by date(update_time) ; 
-* 这样可以工作 select date(update_time) as date_key, count(*) as count from expense_type_data group by date_key ; 
 
 
