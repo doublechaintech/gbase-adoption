@@ -14,14 +14,14 @@ onmode -ky && oninit -v
 * bool就是boolean，值是 'T'=true, 'F'= false
 
 ## 切换数据库
-* 跟informix一样，用database <dbname> 来切换
+* 用database <dbname> 来切换, 比如 database erpdatabase
   
 ## GBASE 约束
 * 约束的名字在最后面
 
 ## 分页查询
-* 跟MYSQL 一样select * from user limit 10, 10 可以工作，但是该种模式下，位置不能通过PreparedStatement参数来设置
-* 跟Informix一样 select skip 2 first 2 * from user 也可以工作，改模式可以通过PreparedStatement参数来设置
+* select * from user limit 10, 10 可以工作，但是该种模式下，位置不能通过PreparedStatement参数来设置，不要用于编程环境
+* select skip 2 first 2 * from user 也可以工作，改模式可以通过PreparedStatement参数来设置，推荐在程序中使用
 * Oracle那种模式也能工作，还没有测试过
 
 ## 命令行工具 dbaccess
