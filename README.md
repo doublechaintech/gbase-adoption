@@ -2,6 +2,12 @@
 
 南大通用GBASE移植过程中的注意事项和文档。以下内容只是应用于GBase 8s v8.7, 其他版本如GBase 8a并不适用。感谢来自原厂工程师的支持。
 
+
+## 体验GBASE版的零售供应链系统
+
+https://demo.doublechaintech.com/admin/retailscmgbase/
+
+
 ## 启动和停止
 
 onmode -ky && oninit -v
@@ -149,9 +155,7 @@ Verbose output complete: mode = 5
 
 
 ```
-## 体验GBASE版的零售供应链系统
 
-https://demo.doublechaintech.com/admin/retailscmgbase/
 
 
 
